@@ -16,3 +16,8 @@ adblock.parseHosts(adblock.getHosts())
 ```
 - _hostDic_ : Location of the system hosts file.
 - _hostSrc_ : List, tuple or set containing urls with hosts raw data [see test.py].
+
+- if you want to revert the hosts file back:
+```
+adblock.cleanHosts()
+```
