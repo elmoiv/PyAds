@@ -21,3 +21,6 @@ adblock.parseHosts(adblock.getHosts())
 ```
 adblock.cleanHosts()
 ```
+
+
+*MUST RUN THIS SCRIPT WITH ADMIN PRIVILEGES*
