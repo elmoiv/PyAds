@@ -1,11 +1,11 @@
-import os, requests, stat
+import os, requests, stat, re
 
 class Adblock:
     
     def __init__(self, hostDic='', hostSrc=[]):
         self.hd = hostDic
         self.hs = hostSrc
-    
+        
     def getHosts(self):
         hosts = []
         for url in self.hs:
@@ -13,10 +13,11 @@ class Adblock:
                 raw_url = requests.get(url, timeout=10).content.decode()
                 raw_url = raw_url.replace('\r', '').replace('\t', ' ')
                 hosts += raw_url.split('\n')
+                print(f'Loaded: {url}')
             except:
                 # Feel free to raise error or do whatever
-                print(f'Error at {url}')
-        return set(i for i in hosts if i and i[0].isdigit())
+                print(f'Error at: {url}')
+        return set(i for i in hosts if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}.*", i))
     
     def parseHosts(self, newHosts):
         os.chmod(self.hd, stat.S_IWRITE)
